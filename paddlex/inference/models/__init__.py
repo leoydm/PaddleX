@@ -19,7 +19,6 @@ from typing import Any, Dict, Optional, Union
 
 from ...utils import errors
 from ..utils.hpi import HPIConfig
-from ..utils.official_models import official_models
 
 # from .table_recognition import TablePredictor
 # from .general_recognition import ShiTuRecPredictor
@@ -70,6 +69,7 @@ def create_predictor(
 
     if need_local_model(genai_config):
         if model_dir is None:
+            from ..utils.official_models import official_models
             model_dir = official_models[model_name]
         else:
             assert Path(model_dir).exists(), f"{model_dir} is not exists!"
